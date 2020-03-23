@@ -1,4 +1,4 @@
-# CS4100 Project
+# Steam Game Recommendations
 
 The goal of this to use content based and collaborative filtering methods to build recommendation systems for recommending Steam games for a user to play.
 
