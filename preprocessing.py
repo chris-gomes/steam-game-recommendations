@@ -55,7 +55,11 @@ def main():
     # normalize the play amounts by the users min and max play times per game
     plays = min_max_norm(plays)
 
+    # split into train and test 
+    train, test = train_test_split(plays, test_size=0.25)
+
     # save to csv
-    plays.to_csv("data\\cleaned-plays.csv", index=False)
+    train.to_csv("data\\train-plays.csv", index=False)
+    test.to_csv("data\\test-plays.csv", index=False)
 
 main()
