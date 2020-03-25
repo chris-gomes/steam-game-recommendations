@@ -56,6 +56,6 @@ def main():
     plays = min_max_norm(plays)
 
     # save to csv
-    plays.to_csv("data\\cleaned_plays.csv", index=False)
+    plays.to_csv("data\\cleaned-plays.csv", index=False)
 
 main()
