@@ -21,11 +21,13 @@ def get_play_data():
 
     return user_plays
 
-def play_minimum(plays, threshold): 
+
+def play_minimum(plays, threshold):
     games_played = plays.groupby("user_id").count().reset_index()
     games_played = games_played[(games_played['amount'] >= threshold)]
     new_plays = plays.merge(games_played["user_id"])
     return new_plays
+
 
 def drop_too_popular(plays, threshold):
     users_played = plays.groupby("user_id").count().reset_index()
@@ -33,12 +35,17 @@ def drop_too_popular(plays, threshold):
     new_plays = plays.merge(users_played['user_id'])
     return new_plays
 
+
 def min_max_norm(plays):
-    new_plays = plays.merge(plays.groupby('user_id').agg({'amount':'min'}).reset_index(), on='user_id')
-    new_plays = new_plays.merge(new_plays.groupby('user_id').agg({'amount_x':'max'}).reset_index(), on='user_id')
+    new_plays = plays.merge(plays.groupby('user_id').agg(
+        {'amount': 'min'}).reset_index(), on='user_id')
+    new_plays = new_plays.merge(new_plays.groupby('user_id').agg(
+        {'amount_x': 'max'}).reset_index(), on='user_id')
     new_plays.columns = ['user_id', 'game_name', 'amount', 'min', 'max']
-    new_plays['norm_amount'] = (new_plays['amount'] - new_plays['min'].apply(np.floor)) / (new_plays['max'] - new_plays['min'].apply(np.floor))
+    new_plays['norm_amount'] = (new_plays['amount'] - new_plays['min'].apply(
+        np.floor)) / (new_plays['max'] - new_plays['min'].apply(np.floor))
     return new_plays.drop(columns=['min', 'max'])
+
 
 def main():
     plays = get_play_data()
@@ -55,11 +62,12 @@ def main():
     # normalize the play amounts by the users min and max play times per game
     plays = min_max_norm(plays)
 
-    # split into train and test 
+    # split into train and test
     train, test = train_test_split(plays, test_size=0.25)
 
     # save to csv
     train.to_csv("data\\train-plays.csv", index=False)
     test.to_csv("data\\test-plays.csv", index=False)
+
 
 main()
