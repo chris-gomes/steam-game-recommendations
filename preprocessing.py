@@ -46,7 +46,7 @@ def min_max_norm(plays):
         np.floor)) / (new_plays['max'] - new_plays['min'].apply(np.floor))
     return new_plays.drop(columns=['min', 'max'])
 
-
+# TODO check for bugs
 def main():
     plays = get_play_data()
 
