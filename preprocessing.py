@@ -63,12 +63,32 @@ def main():
     # normalize the play amounts by the users min and max play times per game
     plays = min_max_norm(plays)
     print("Added normalized amount by game")
+    
+    # create game ids
+    game_coding = pd.DataFrame(plays['game_name'].unique()).reset_index()
+    game_coding.columns = ["game_id", "game_name"]
+
+    # replace game names with ids
+    plays = plays.merge(game_coding, on="game_name")
+    plays = plays.drop(columns="game_name")
+    print("Created game ids")
+
+    # make user ids continous and start from 0
+    user_coding = pd.DataFrame(plays['user_id'].unique()).reset_index()
+    user_coding.columns = ["new_user_id", "user_id"]
+    plays = plays.merge(user_coding, on="user_id")
+    plays = plays.drop(columns="user_id")
+    plays = plays.rename(columns={"new_user_id":"user_id"})
+    print("Created new user ids")
 
     # split into train and test
     train = pd.DataFrame()
     test = pd.DataFrame()
     for name, group in plays.groupby('user_id'):
-        curr_train, curr_test = train_test_split(group, test_size=0.25)
+        if (group.shape[0] >= 20):
+            curr_train, curr_test = train_test_split(group, test_size=5)
+        else:
+            curr_train, curr_test = train_test_split(group, test_size=0.25)
         train = train.append(curr_train)
         test = test.append(curr_test)
 
@@ -79,7 +99,8 @@ def main():
     # save to csv
     train.to_csv("data\\train-plays.csv", index=False)
     test.to_csv("data\\test-plays.csv", index=False)
-    print("Saved train and test to csvs")
+    game_coding.to_csv("data\\game-coding.csv", index=False)
+    print("Saved data and codings to csvs")
 
 
 main()
