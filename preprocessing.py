@@ -53,7 +53,7 @@ def main():
     print("Read in data: {}".format(plays.shape[0]))
 
     # remove games that more than 1000 people have played or less than 10
-    plays = drop_unplayed_or_too_popular(plays, 10, 1000)
+    plays = drop_unplayed_or_too_popular(plays, 10, 500)
     print("Removed too popular games: {}".format(plays.shape[0]))
 
     # only keep users that played at least 10 games
