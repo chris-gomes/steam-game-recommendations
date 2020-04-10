@@ -52,12 +52,12 @@ def main():
     plays = get_play_data()
     print("Read in data: {}".format(plays.shape[0]))
 
-    # remove games that more than 1000 people have played or less than 5
-    plays = drop_unplayed_or_too_popular(plays, 5, 1000)
+    # remove games that more than 1000 people have played or less than 10
+    plays = drop_unplayed_or_too_popular(plays, 10, 1000)
     print("Removed too popular games: {}".format(plays.shape[0]))
 
-    # only keep users that played at least 5 games
-    plays = play_minimum(plays, 5)
+    # only keep users that played at least 10 games
+    plays = play_minimum(plays, 10)
     print("Removed users with few played games: {}".format(plays.shape[0]))
 
     # normalize the play amounts by the users min and max play times per game
@@ -85,10 +85,7 @@ def main():
     train = pd.DataFrame()
     test = pd.DataFrame()
     for name, group in plays.groupby('user_id'):
-        if (group.shape[0] >= 20):
-            curr_train, curr_test = train_test_split(group, test_size=5)
-        else:
-            curr_train, curr_test = train_test_split(group, test_size=0.25)
+        curr_train, curr_test = train_test_split(group, test_size=1)
         train = train.append(curr_train)
         test = test.append(curr_test)
 
