@@ -63,7 +63,7 @@ def main():
     # normalize the play amounts by the users min and max play times per game
     plays = min_max_norm(plays)
     print("Added normalized amount by game")
-    
+
     # create game ids
     game_coding = pd.DataFrame(plays['game_name'].unique()).reset_index()
     game_coding.columns = ["game_id", "game_name"]
