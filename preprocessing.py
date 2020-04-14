@@ -52,6 +52,8 @@ def main():
     plays = get_play_data()
     print("Read in data: {}".format(plays.shape[0]))
 
+    # TODO clean up game names
+
     # remove games that more than 1000 people have played or less than 10
     plays = drop_unplayed_or_too_popular(plays, 10, 500)
     print("Removed too popular games: {}".format(plays.shape[0]))
