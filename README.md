@@ -9,5 +9,15 @@ The goal of this project is to use collaborative filtering methods to build reco
 1. Run `preprocessing.py` to get the cleaned user information
 1. Use the existing notebooks or new ones to explore the cleaned data files in the "data" directory
 
+# Models:
+- Alternate Least Squares (http://yifanhu.net/PUB/cf.pdf)
+- Bayesian Personalized Ranking (https://arxiv.org/pdf/1205.2618.pdf)
+- Logistic Matrix Factorization (https://web.stanford.edu/~rezab/nips2014workshop/submits/logmat.pdf)
+- Neural Collaborative Filtering (https://arxiv.org/pdf/1708.05031.pdf)
+
 # Datasets
 - User Game Purchases: https://www.kaggle.com/tamber/steam-video-games/data
+
+# Libraries
+- Implicit (https://implicit.readthedocs.io/en/latest/index.html)
+- TensorFlow (https://www.tensorflow.org/)
