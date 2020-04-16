@@ -54,6 +54,7 @@ def main():
 
     # remove play times under 1 hour
     plays = plays[plays.amount >= 1]
+    print("Removed plays under 1 hour")
 
     # remove games that more than 500 people have played or less than 10
     plays = drop_unplayed_or_too_popular(plays, 10, 500)
