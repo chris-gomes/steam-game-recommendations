@@ -9,7 +9,7 @@ The goal of this project is to use collaborative filtering methods to build reco
 1. Run `preprocessing.py` to get the cleaned user information
 1. Use the existing notebooks or new ones to explore the cleaned data files in the "data" directory
 
-# Models:
+# Models
 - Alternate Least Squares (http://yifanhu.net/PUB/cf.pdf)
 - Bayesian Personalized Ranking (https://arxiv.org/pdf/1205.2618.pdf)
 - Logistic Matrix Factorization (https://web.stanford.edu/~rezab/nips2014workshop/submits/logmat.pdf)
