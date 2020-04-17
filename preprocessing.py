@@ -52,16 +52,12 @@ def main():
     plays = get_play_data()
     print("Read in data: {}".format(plays.shape[0]))
 
-    # remove play times under 1 hour
-    plays = plays[plays.amount >= 1]
-    print("Removed plays under 1 hour")
-
-    # remove games that more than 500 people have played or less than 10
-    plays = drop_unplayed_or_too_popular(plays, 10, 500)
+    # remove games that more than 300 people have played or less than 10
+    plays = drop_unplayed_or_too_popular(plays, 10, 300)
     print("Removed too popular games: {}".format(plays.shape[0]))
 
-    # only keep users that played at least 10 games
-    plays = play_minimum(plays, 10)
+    # only keep users that played at least 2 games
+    plays = play_minimum(plays, 2)
     print("Removed users with few played games: {}".format(plays.shape[0]))
 
     # normalize the play amounts by the users min and max play times per game
