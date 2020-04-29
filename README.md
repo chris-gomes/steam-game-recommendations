@@ -1,6 +1,6 @@
 # Steam Game Recommendations
 
-The goal of this project is to use collaborative filtering methods to build recommendation systems for recommending Steam games for users based on games they previously played. A write-up for the initial findings is available [here](https://ccgomes.com/files/steam_game_recommendations.pdf)
+The goal of this project is to use collaborative filtering methods to build recommendation systems for recommending Steam games for users based on games they previously played. A write-up for the initial findings is available [here](https://ccgomes.com/files/steam_game_recommendations.pdf).
 
 ## Getting Started
 1. Clone this repo
